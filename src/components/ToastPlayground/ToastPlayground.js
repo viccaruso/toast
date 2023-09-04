@@ -17,7 +17,14 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-      {isShown && <Toast message={message} variant={toastVariant} />}
+      {isShown && (
+        <Toast
+          message={message}
+          variant={toastVariant}
+          isShown={isShown}
+          setIsShown={setIsShown}
+        />
+      )}
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
