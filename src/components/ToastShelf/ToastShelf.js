@@ -11,9 +11,6 @@ function ToastShelf({ toasts }) {
           <Toast variant={toast.type}>{toast.message}</Toast>
         </li>
       ))}
-      <li className={styles.toastWrapper}>
-        <Toast variant="error">Example error toast</Toast>
-      </li>
     </ol>
   );
 }

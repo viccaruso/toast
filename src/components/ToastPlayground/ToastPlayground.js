@@ -10,12 +10,19 @@ function ToastPlayground() {
   const [message, setMessage] = React.useState('');
   const [toastVariant, setToastVariant] = React.useState('notice');
   const [isShown, setIsShown] = React.useState(false);
-  const [activeToasts, setActiveToasts] = React.useState([
-    { id: 1, message: 'Hello', type: 'warning' },
-  ]);
+  const [activeToasts, setActiveToasts] = React.useState([]);
 
   function handleDismiss() {
     setIsShown(!isShown);
+  }
+
+  function createToast() {
+    const newToast = {
+      id: crypto.randomUUID(),
+      message: message,
+      type: toastVariant,
+    };
+    setActiveToasts([...activeToasts, newToast]);
   }
 
   return (
@@ -24,7 +31,6 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-      <ToastShelf toasts={activeToasts}></ToastShelf>
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
@@ -66,10 +72,11 @@ function ToastPlayground() {
         <div className={styles.row}>
           <div className={styles.label} />
           <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
-            <Button onClick={() => setIsShown(!isShown)}>Pop Toast!</Button>
+            <Button onClick={() => createToast()}>Pop Toast!</Button>
           </div>
         </div>
       </div>
+      <ToastShelf toasts={activeToasts}></ToastShelf>
     </div>
   );
 }
