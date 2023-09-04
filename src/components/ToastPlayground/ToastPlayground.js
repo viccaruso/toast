@@ -8,6 +8,7 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
   const [message, setMessage] = React.useState('');
+  const [type, setType] = React.useState('');
 
   return (
     <div className={styles.wrapper}>
@@ -44,6 +45,8 @@ function ToastPlayground() {
                 type="radio"
                 name="variant"
                 value="notice"
+                checked={type === 'notice'}
+                onChange={(event) => setType(event.target.value)}
               />
               notice
             </label>
