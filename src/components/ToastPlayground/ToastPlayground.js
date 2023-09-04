@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '../Button';
-import Toast from '../Toast/Toast';
+import ToastShelf from '../ToastShelf/ToastShelf';
 import styles from './ToastPlayground.module.css';
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
@@ -10,6 +10,9 @@ function ToastPlayground() {
   const [message, setMessage] = React.useState('');
   const [toastVariant, setToastVariant] = React.useState('notice');
   const [isShown, setIsShown] = React.useState(false);
+  const [activeToasts, setActiveToasts] = React.useState([
+    { id: 1, message: 'Hello', type: 'warning' },
+  ]);
 
   function handleDismiss() {
     setIsShown(!isShown);
@@ -21,11 +24,7 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-      {isShown && (
-        <Toast variant={toastVariant} handleDismiss={handleDismiss}>
-          {message}
-        </Toast>
-      )}
+      <ToastShelf toasts={activeToasts}></ToastShelf>
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
