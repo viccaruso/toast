@@ -20,7 +20,7 @@ const ICONS_BY_VARIANT = {
 
 function Toast({ message, variant }) {
   return (
-    <div className={`${styles.toast} ${styles.notice}`}>
+    <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}></div>
       {ICONS_BY_VARIANT[variant]}
       <p className={styles.content}>{message}</p>
