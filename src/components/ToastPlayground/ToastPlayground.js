@@ -12,8 +12,9 @@ function ToastPlayground() {
   const [isShown, setIsShown] = React.useState(false);
   const [activeToasts, setActiveToasts] = React.useState([]);
 
-  function handleDismiss() {
-    setIsShown(!isShown);
+  function dismissToast(id) {
+    const newToasts = activeToasts.filter((toast) => toast.id !== id);
+    setActiveToasts(newToasts);
   }
 
   function createToast() {
@@ -78,7 +79,10 @@ function ToastPlayground() {
           </div>
         </div>
       </div>
-      <ToastShelf toasts={activeToasts}></ToastShelf>
+      <ToastShelf
+        toasts={activeToasts}
+        handleDismiss={dismissToast}
+      ></ToastShelf>
     </div>
   );
 }
