@@ -23,6 +23,8 @@ function ToastPlayground() {
       type: toastVariant,
     };
     setActiveToasts([...activeToasts, newToast]);
+    setMessage('');
+    setToastVariant('notice');
   }
 
   return (
