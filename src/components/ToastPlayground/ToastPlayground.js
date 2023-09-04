@@ -8,7 +8,7 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
   const [message, setMessage] = React.useState('');
-  const [toastVariant, setToastVariant] = React.useState('');
+  const [toastVariant, setToastVariant] = React.useState('notice');
   const [isShown, setIsShown] = React.useState(false);
 
   return (
@@ -18,12 +18,9 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
       {isShown && (
-        <Toast
-          message={message}
-          variant={toastVariant}
-          isShown={isShown}
-          setIsShown={setIsShown}
-        />
+        <Toast variant={toastVariant} isShown={isShown} setIsShown={setIsShown}>
+          {message}
+        </Toast>
       )}
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
