@@ -14,13 +14,19 @@ function ToastProvider({ children }) {
     setToasts([...toasts, newToast]);
   }
 
+  function dismissAll() {
+    setToasts([]);
+  }
+
   function dismissToast(id) {
     const newToasts = toasts.filter((toast) => toast.id !== id);
     setToasts(newToasts);
   }
 
   return (
-    <ToastContext.Provider value={{ toasts, createToast, dismissToast }}>
+    <ToastContext.Provider
+      value={{ toasts, createToast, dismissToast, dismissAll }}
+    >
       {children}
     </ToastContext.Provider>
   );

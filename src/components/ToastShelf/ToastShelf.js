@@ -4,7 +4,15 @@ import Toast from '../Toast';
 import styles from './ToastShelf.module.css';
 
 function ToastShelf() {
-  const { toasts } = React.useContext(ToastContext);
+  const { toasts, dismissAll } = React.useContext(ToastContext);
+
+  React.useEffect(() => {
+    function handleEscape() {
+      dismissAll();
+    }
+    window.addEventListener('keydown', handleEscape);
+  }, []);
+
   return (
     <ol className={styles.wrapper}>
       {toasts.map((toast) => (
