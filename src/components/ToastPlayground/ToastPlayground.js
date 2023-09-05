@@ -1,5 +1,5 @@
 import React from 'react';
-import ToastContext from '../ToastProvider/ToastProvider';
+import { ToastContext } from '../ToastProvider/ToastProvider';
 import Button from '../Button';
 import ToastShelf from '../ToastShelf/ToastShelf';
 import styles from './ToastPlayground.module.css';
@@ -8,14 +8,14 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
   const [message, setMessage] = React.useState('');
-  const [toastVariant, setToastVariant] = React.useState('notice');
-  const { createToast, dismissToast } = React.useContext(ToastContext);
+  const [type, setType] = React.useState('notice');
+  const { createToast } = React.useContext(ToastContext);
 
   function handleSubmit(event) {
     event.preventDefault();
-    createToast({ message, toastVariant });
+    createToast({ message, type });
     setMessage('');
-    setToastVariant('notice');
+    setType('notice');
   }
 
   return (
@@ -54,8 +54,8 @@ function ToastPlayground() {
                     type="radio"
                     name={variant}
                     value={variant}
-                    checked={toastVariant === variant}
-                    onChange={(event) => setToastVariant(event.target.value)}
+                    checked={type === variant}
+                    onChange={(event) => setType(event.target.value)}
                   />
                   {variant}
                 </label>
@@ -71,10 +71,7 @@ function ToastPlayground() {
           </div>
         </div>
       </form>
-      <ToastShelf
-        toasts={activeToasts}
-        handleDismiss={dismissToast}
-      ></ToastShelf>
+      <ToastShelf />
     </div>
   );
 }

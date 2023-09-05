@@ -3,24 +3,24 @@ import React from 'react';
 export const ToastContext = React.createContext();
 
 function ToastProvider({ children }) {
-  const [activeToasts, setActiveToasts] = React.useState([]);
+  const [toasts, setToasts] = React.useState([]);
 
   function createToast({ message, type }) {
     const newToast = {
       id: crypto.randomUUID(),
-      message: message,
-      type: toastVariant,
+      message,
+      type,
     };
-    setActiveToasts([...activeToasts, newToast]);
+    setToasts([...toasts, newToast]);
   }
 
   function dismissToast(id) {
-    const newToasts = activeToasts.filter((toast) => toast.id !== id);
-    setActiveToasts(newToasts);
+    const newToasts = toasts.filter((toast) => toast.id !== id);
+    setToasts(newToasts);
   }
 
   return (
-    <ToastContext.Provider value={{ activeToasts, createToast, dismissToast }}>
+    <ToastContext.Provider value={{ toasts, createToast, dismissToast }}>
       {children}
     </ToastContext.Provider>
   );
