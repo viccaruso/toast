@@ -1,15 +1,15 @@
 import React from 'react';
 
-function useKeydown(eventKeys, callback) {
+function useKeydown(eventCodes, callback) {
   return React.useEffect(() => {
     function handleKeydown(event) {
-      if (eventKeys.includes(event.key)) {
-        callback();
+      if (eventCodes.includes(event.code)) {
+        callback(event);
       }
     }
     window.addEventListener('keydown', handleKeydown);
 
     return () => window.removeEventListener('keydown', handleKeydown);
-  }, []);
+  }, [eventCodes, callback]);
 }
 export default useKeydown;

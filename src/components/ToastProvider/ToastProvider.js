@@ -4,7 +4,10 @@ export const ToastContext = React.createContext();
 
 function ToastProvider({ children }) {
   const [toasts, setToasts] = React.useState([]);
-  useKeydown(['Escape'], dismissAll);
+
+  const handleKeydown = React.useCallback(() => setToasts([]), []);
+
+  useKeydown(['Escape', 'KeyX'], handleKeydown);
 
   function createToast({ message, type }) {
     const newToast = {
@@ -15,19 +18,13 @@ function ToastProvider({ children }) {
     setToasts([...toasts, newToast]);
   }
 
-  function dismissAll() {
-    setToasts([]);
-  }
-
   function dismissToast(id) {
     const newToasts = toasts.filter((toast) => toast.id !== id);
     setToasts(newToasts);
   }
 
   return (
-    <ToastContext.Provider
-      value={{ toasts, createToast, dismissToast, dismissAll }}
-    >
+    <ToastContext.Provider value={{ toasts, createToast, dismissToast }}>
       {children}
     </ToastContext.Provider>
   );
