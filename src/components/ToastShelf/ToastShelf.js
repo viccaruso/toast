@@ -9,7 +9,7 @@ function ToastShelf() {
     <ol className={styles.wrapper}>
       {toasts.map((toast) => (
         <li key={toast.id} className={styles.toastWrapper}>
-          <Toast variant={toast.type} id={toast.id}>
+          <Toast type={toast.type} id={toast.id}>
             {toast.message}
           </Toast>
         </li>
