@@ -10,6 +10,6 @@ function useKeydown(eventCodes, callback) {
     window.addEventListener('keydown', handleKeydown);
 
     return () => window.removeEventListener('keydown', handleKeydown);
-  }, []);
+  }, [eventCodes, callback]);
 }
 export default useKeydown;

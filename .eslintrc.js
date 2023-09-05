@@ -24,5 +24,5 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react'],
-  rules: { 'react/prop-types': 'ignore' },
+  rules: { 'react/prop-types': 0 },
 };
