@@ -5,10 +5,12 @@ import Footer from '../Footer';
 
 function App() {
   return (
-    <ToastProvider>
-      <ToastPlayground />
+    <>
+      <ToastProvider>
+        <ToastPlayground />
+      </ToastProvider>
       <Footer />
-    </ToastProvider>
+    </>
   );
 }
 
