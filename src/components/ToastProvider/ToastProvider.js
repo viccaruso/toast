@@ -4,7 +4,7 @@ export const ToastContext = React.createContext();
 
 function ToastProvider({ children }) {
   const [toasts, setToasts] = React.useState([]);
-  useKeydown(['Escape'], dismissAll);
+  useKeydown(['Escape', 'KeyX'], dismissAll);
 
   function createToast({ message, type }) {
     const newToast = {
